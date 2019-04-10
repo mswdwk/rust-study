@@ -1,0 +1,16 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+---
+Language: Proto
+AlignConsecutiveAssignments: true
+AlignEscapedNewlines: DontAlign
+AlignTrailingComments: false
+ColumnLimit: 0
+AlwaysBreakAfterReturnType: None
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: false 
+  AfterStruct: false
+  AfterNamespace: false
+NamespaceIndentation: All
