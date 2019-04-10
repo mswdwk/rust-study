@@ -1,0 +1,21 @@
+syntax              = "proto2";
+option optimize_for = LITE_RUNTIME;
+
+message ContentInt {
+	optional bool one = 1;
+	optional int64 two = 2 ;
+	optional string three = 3;
+}
+
+message ContentStr {
+	optional bool one = 1;
+	optional string two = 2 ;
+	optional string three = 3;
+}
+
+message ContentStr4 {
+	optional bool one = 1;
+	optional string two = 2 ;
+	optional string three = 3;
+	optional string four = 4;
+}

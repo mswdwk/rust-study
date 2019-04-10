@@ -1,0 +1,9 @@
+[package]
+name = "pb_test"
+version = "0.1.0"
+authors = ["mswdwk <mswdwk@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+protobuf = "2.4.0"
+futures = "0.1.0"
