@@ -1,0 +1,8 @@
+[package]
+name = "tokio_test"
+version = "0.1.0"
+authors = ["mswdwk <mswdwk@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+http = "0.1"
