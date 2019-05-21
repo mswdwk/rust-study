@@ -1,0 +1,7 @@
+[workspace]
+members = ["simple_test","pb_test"]
+exclude = ["test"]
+
+[profile.dev]
+[profile.release]
+[replace]
