@@ -1,5 +1,5 @@
 [workspace]
-members = ["simple_test","pb_test"]
+members = ["simple_test","pb_test","cache_test"]
 exclude = ["test"]
 
 [profile.dev]
