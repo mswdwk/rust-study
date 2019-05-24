@@ -2,8 +2,8 @@ pub mod errors;
 pub mod types;
 pub mod store;
 
-#[macro_use]
-extern crate error_chain;
+// #[macro_use]
+// extern crate error_chain;
 
 
 #[cfg(test)]
@@ -14,7 +14,7 @@ mod tests{
 
     #[test]
     fn test_cache(){
-        let mut store = Store::new();
+        let mut store = MemStore::new();
         let key: Vec<u8> = vec![1,2,3];
         let value: Vec<u8> = vec![4,5,6];
         store.set(&key,value);
@@ -57,7 +57,7 @@ mod tests{
 
     #[test]
     fn test_from_i32(){
-        let mut store = Store::new();
+        let mut store = MemStore::new();
         let key= 64.into_mck();
         let value: Vec<u8> = vec![4,5,6];
         store.set(&key,value);
@@ -67,7 +67,7 @@ mod tests{
 
     #[test]
     fn test_from_str(){
-        let mut cache_sotre = {Store::new()};
+        let mut cache_sotre = { MemStore::new()};
 
         let key= "64".into_mck();
         let value = "value".into_mcv();
@@ -77,8 +77,8 @@ mod tests{
     }
 
     #[test]
-    fn test_from_str_expire(){
-        let mut cache_sotre = {Store::new()};
+    fn test_from_str_expire() {
+        let mut cache_sotre = { MemStore::new()};
 
         let key= "64".into_mck();
         let value = "value".into_mcv();

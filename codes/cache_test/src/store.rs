@@ -1,18 +1,21 @@
 use super::types::*;
+use super::errors::*;
+
 use std::collections::HashMap;
 
+
 #[derive(Debug)]
-pub struct Store {
+pub struct MemStore {
     kv: HashMap<MemcachedKey, MemcachedValue>,
 }
 
-impl Store {
-    pub fn new() -> Store {
-        Store { kv: HashMap::new() }
+impl MemStore {
+    pub fn new() -> MemStore {
+        MemStore { kv: HashMap::new() }
     }
 
-    pub fn with_capacity(size: usize) ->Store {
-        Store { kv: HashMap::with_capacity(size)}
+    pub fn with_capacity(size: usize) ->MemStore {
+        MemStore { kv: HashMap::with_capacity(size)}
     }
 
     pub fn set(&mut self, key: &MemcachedKey, value: MemcachedValue) {
@@ -24,4 +27,10 @@ impl Store {
     }
 
     pub fn remove(&mut self, key: &MemcachedKey) -> Option<MemcachedValue> {self.kv.remove(key)}
+}
+
+pub trait DbStore {
+    fn create() -> Result<()>;
+    fn get(key: &MemcachedKey) ->Result<Option<MemcachedKey>>;
+    fn delete();
 }
