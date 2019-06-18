@@ -1,6 +1,7 @@
 use std::collections::HashSet;
 use std::sync::{Arc, Mutex};
 use std::thread;
+use std::time::Instant;
 
 fn main() {
     let mutex = Arc::new(Mutex::new(HashSet::new()));
@@ -17,4 +18,15 @@ fn main() {
     let data = p_err.into_inner();
     println!("recovered {} items", data.len());
     println!("data content {:?} ", data);
+    
+	  let rw = std::sync::RwLock::new(123);
+	  
+    let now = Instant::now();
+    let loop_time = 10_000_000;
+    for _ in  0..loop_time {
+       let _ = rw.read();
+    }
+    let escp  = now.elapsed().as_nanos();
+    let per = escp / loop_time;
+    println!("total cost= {}ms once_cost= {}ns",now.elapsed().as_millis(),per  );
 }
