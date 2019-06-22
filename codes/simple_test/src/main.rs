@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap,BTreeMap};
 
 #[derive(Debug)]
 struct Student {
@@ -28,4 +28,23 @@ fn main() {
     println!("{:?}",students );
     let students_array: Vec<_> = students.iter().map(|(_,s)|s).collect();
     display_slice(&students_array[..]);
+    
+	let mut bmap = BTreeMap::new();
+ // let student1 = Student { id:1,name:"name_1".to_owned()};
+ let student2 = Student { id:3,name:"name_3".to_owned()};
+ let student3 = Student { id:5,name:"name_5".to_owned()};
+ let student4 = Student { id:2,name:"name_2".to_owned()};
+ let student5 = Student { id:6,name:"name_6".to_owned()};
+ let student6 = Student { id:4,name:"name_4".to_owned()};
+	// bmap.insert(student1.id,student1);
+	bmap.insert(student2.id,student2);
+	bmap.insert(student3.id,student3);
+	bmap.insert(student4.id,student4);
+	bmap.insert(student5.id,student5);
+	bmap.insert(student6.id,student6);
+
+	for (id,stu) in &bmap {
+	println!("id= {} student= {:?}",id,stu);
+	}
+	println!("student= {:?}",bmap.get(&2));
 }
