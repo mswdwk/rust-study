@@ -1,4 +1,9 @@
 use std::collections::{HashMap,BTreeMap};
+use std::sync::RwLock;
+#[macro_use]
+extern crate lazy_static;
+
+pub mod lz;
 
 #[derive(Debug)]
 struct Student {
@@ -19,7 +24,7 @@ fn display_slice(students: &[&Student]) {
     println!("students= {:?}",students );
 }
 
-fn main() {
+fn test_main() {
     let mut students: HashMap<i32,Student> = HashMap::new();
     insert_map!(students,(1,"name_1"));
     insert_map!(students,(2,"name_2"));
@@ -47,4 +52,32 @@ fn main() {
 	println!("id= {} student= {:?}",id,stu);
 	}
 	println!("student= {:?}",bmap.get(&2));
+}
+
+
+
+
+lazy_static! {
+    pub static ref HASHMAP: RwLock<HashMap<u32, &'static str>> = {
+        let mut m = HashMap::new();
+        m.insert(0, "foo");
+        m.insert(1, "bar");
+        m.insert(2, "baz");
+        println!("init lzay in main");
+        RwLock::new(m)
+    };
+    // static ref COUNT: usize = HASHMAP.len();
+    static ref NUMBER: u32 = times_two(21);
+}
+fn times_two(n: u32) -> u32 { n * 2 }
+
+fn main() {
+    test_main();
+    
+    // crate::lz::print_map(&*map);
+    let a = *lz::HASHMAP_2;
+    println!("HASHMAP_2={}",a);
+    println!("NUMBER={}",*NUMBER);
+    let map = {HASHMAP.read().unwrap()};
+    crate::lz::print_map(&*map);
 }
