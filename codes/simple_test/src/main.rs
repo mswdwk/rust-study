@@ -72,9 +72,12 @@ lazy_static! {
 fn times_two(n: u32) -> u32 { n * 2 }
 
 fn main() {
-    test_main();
-    
+    // test_main();
     // crate::lz::print_map(&*map);
+ 
+    let map = {HASHMAP.read().unwrap()};
+    crate::lz::print_map(&*map);
+    drop(map); 
     let a = *lz::HASHMAP_2;
     println!("HASHMAP_2={}",a);
     println!("NUMBER={}",*NUMBER);
