@@ -266,6 +266,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "two_thread_write_file"
+version = "0.1.0"
+
+[[package]]
 name = "ucd-util"
 version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

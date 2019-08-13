@@ -2,6 +2,8 @@ use std::collections::{HashMap,BTreeMap};
 use std::sync::RwLock;
 #[macro_use]
 extern crate lazy_static;
+use std::thread;
+use std::fs::OpenOptions;
 
 pub mod lz;
 
@@ -71,6 +73,9 @@ lazy_static! {
 }
 fn times_two(n: u32) -> u32 { n * 2 }
 
+fn test_mutli_write_file() {
+   
+}
 fn main() {
     // test_main();
     // crate::lz::print_map(&*map);
@@ -83,4 +88,5 @@ fn main() {
     println!("NUMBER={}",*NUMBER);
     let map = {HASHMAP.read().unwrap()};
     crate::lz::print_map(&*map);
+	  test_mutli_write_file();
 }
