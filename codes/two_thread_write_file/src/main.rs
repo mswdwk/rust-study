@@ -14,26 +14,27 @@ pub fn append_file_data(path:&str,data: &[u8]) -> Result<()> {
       println!("create file: path= {} {:?}", &path,data);
         File::create(&path)?
     };
-	// for _ in 0..20 {
-    let written_len = file.write(data)?;
-// }
+    let mut written_len=0; 
+	for _ in 0..20 {
+        written_len += file.write(data)?;
+    }
     println!("append file data {}",written_len );
 	 Ok(())
 	};
 	if let Err(err) = c() {
-	println!("thread_1: err= {:?}",err);
+	    println!("thread_1: err= {:?}",err);
 	}
 	Ok(())
 }
 
 fn main() {
-thread::spawn(||{
-	append_file_data("test.txt",&[65,65,65,65])
-});
-thread::spawn(||{
-	// append_file_data("test.txt",&[66,66,66,66])
-});
+    thread::spawn(||{
+	    append_file_data("test.txt",&[65,65,65,65])
+    });
+    thread::spawn(||{
+        append_file_data("test.txt",&[66,66,66,66])
+    });
 
-thread::sleep(std::time::Duration::from_secs(1));
+    thread::sleep(std::time::Duration::from_secs(1));
     println!("Hello, world!");
 }
